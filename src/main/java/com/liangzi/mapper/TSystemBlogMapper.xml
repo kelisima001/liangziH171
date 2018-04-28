@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangzi.mapper.TSystemBlogMapper">
+  <resultMap id="BaseResultMap" type="com.liangzi.pojo.TSystemBlog">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="createid" jdbcType="INTEGER" property="createid" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="canpublic" jdbcType="TINYINT" property="canpublic" />
+    <result column="fabulous" jdbcType="INTEGER" property="fabulous" />
+    <result column="avater" jdbcType="VARCHAR" property="avater" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.liangzi.pojo.TSystemBlog">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, createid, createtime, canpublic, fabulous, avater
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.liangzi.pojo.TSystemBlogExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_system_blog
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.liangzi.pojo.TSystemBlogExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_system_blog
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_system_blog
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_system_blog
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.liangzi.pojo.TSystemBlogExample">
+    delete from t_system_blog
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liangzi.pojo.TSystemBlog">
+    insert into t_system_blog (id, createid, createtime, 
+      canpublic, fabulous, avater, 
+      content)
+    values (#{id,jdbcType=INTEGER}, #{createid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{canpublic,jdbcType=TINYINT}, #{fabulous,jdbcType=INTEGER}, #{avater,jdbcType=VARCHAR}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liangzi.pojo.TSystemBlog">
+    insert into t_system_blog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createid != null">
+        createid,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="canpublic != null">
+        canpublic,
+      </if>
+      <if test="fabulous != null">
+        fabulous,
+      </if>
+      <if test="avater != null">
+        avater,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createid != null">
+        #{createid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="canpublic != null">
+        #{canpublic,jdbcType=TINYINT},
+      </if>
+      <if test="fabulous != null">
+        #{fabulous,jdbcType=INTEGER},
+      </if>
+      <if test="avater != null">
+        #{avater,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.liangzi.pojo.TSystemBlogExample" resultType="java.lang.Long">
+    select count(*) from t_system_blog
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_system_blog
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.createid != null">
+        createid = #{record.createid,jdbcType=INTEGER},
+      </if>
+      <if test="record.createtime != null">
+        createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.canpublic != null">
+        canpublic = #{record.canpublic,jdbcType=TINYINT},
+      </if>
+      <if test="record.fabulous != null">
+        fabulous = #{record.fabulous,jdbcType=INTEGER},
+      </if>
+      <if test="record.avater != null">
+        avater = #{record.avater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update t_system_blog
+    set id = #{record.id,jdbcType=INTEGER},
+      createid = #{record.createid,jdbcType=INTEGER},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      canpublic = #{record.canpublic,jdbcType=TINYINT},
+      fabulous = #{record.fabulous,jdbcType=INTEGER},
+      avater = #{record.avater,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_system_blog
+    set id = #{record.id,jdbcType=INTEGER},
+      createid = #{record.createid,jdbcType=INTEGER},
+      createtime = #{record.createtime,jdbcType=TIMESTAMP},
+      canpublic = #{record.canpublic,jdbcType=TINYINT},
+      fabulous = #{record.fabulous,jdbcType=INTEGER},
+      avater = #{record.avater,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liangzi.pojo.TSystemBlog">
+    update t_system_blog
+    <set>
+      <if test="createid != null">
+        createid = #{createid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="canpublic != null">
+        canpublic = #{canpublic,jdbcType=TINYINT},
+      </if>
+      <if test="fabulous != null">
+        fabulous = #{fabulous,jdbcType=INTEGER},
+      </if>
+      <if test="avater != null">
+        avater = #{avater,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.liangzi.pojo.TSystemBlog">
+    update t_system_blog
+    set createid = #{createid,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      canpublic = #{canpublic,jdbcType=TINYINT},
+      fabulous = #{fabulous,jdbcType=INTEGER},
+      avater = #{avater,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liangzi.pojo.TSystemBlog">
+    update t_system_blog
+    set createid = #{createid,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      canpublic = #{canpublic,jdbcType=TINYINT},
+      fabulous = #{fabulous,jdbcType=INTEGER},
+      avater = #{avater,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

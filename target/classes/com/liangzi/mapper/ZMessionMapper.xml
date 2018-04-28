@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangzi.mapper.ZMessionMapper">
+	<resultMap id="BaseResultMap" type="com.liangzi.pojo.ZSystemMession">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="missionname" jdbcType="VARCHAR" property="missionname" />
+		<result column="createname" jdbcType="VARCHAR" property="createname" />
+	    <result column="executorname" jdbcType="VARCHAR" property="executorname" />
+	    <result column="content" jdbcType="VARCHAR" property="content" />
+	    <result column="begintime" jdbcType="DATE" property="begintime" />
+	    <result column="endtime" jdbcType="DATE" property="endtime" />
+	    <result column="cooperationer" jdbcType="VARCHAR" property="cooperationer" />
+	    <result column="status" jdbcType="VARCHAR" property="status" />
+	    
+	</resultMap>
+	<select id="getMessionList" resultMap="BaseResultMap">
+		select
+			m.id as id,
+			m.missionname as missionname,
+			(select name from t_employee e where e.id=m.createid) as createname,
+			(select name from t_employee e where e.id=m.Executorid) as executorname,
+			m.content as content,
+			m.begintime as begintime,
+			m.endtime as endtime,
+			m.cooperationer as cooperationer,
+			m.status as status
+		from
+			t_system_mession m
+		order by
+			m.begintime
+		asc
+	</select>
+</mapper>

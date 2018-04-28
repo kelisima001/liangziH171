@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangzi.mapper.ZNoticeListMapper">
+	<select id="selectNoticeList" resultType="com.liangzi.pojo.ZNoticeList">
+		select * from t_system_notice
+	</select>
+
+
+<!-- 关联employee查询 -->
+  <resultMap id="EmployeeNameMap" type="com.liangzi.pojo.TEmployee">
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  
+  <resultMap id="NoticeListMap" type="com.liangzi.pojo.ZNoticeList">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="createname" jdbcType="INTEGER" property="createname" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="checkname" jdbcType="INTEGER" property="checkname" />
+    <result column="checktime" jdbcType="TIMESTAMP" property="checktime" />
+    
+  </resultMap>
+  <resultMap extends="NoticeListMap" id="NoticeListMapWithBLOBs" type="com.liangzi.pojo.ZNoticeListWithBLOBs">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <result column="remark" jdbcType="LONGVARCHAR" property="remark" />
+    <result column="checkremark" jdbcType="LONGVARCHAR" property="checkremark" />
+  </resultMap>
+  
+  <select id="getNoticeList" resultMap="NoticeListMapWithBLOBs">
+  	select 
+  		t.id,
+  		t.name,
+  		t.content,
+  		t.createtime,
+  		t.createname,
+  		e.name as checkname,
+  		t.checktime,
+  		t.checkremark,
+  		t.remark
+  	from 
+  		(select 
+  		n.id as id,
+  		n.name as name,
+  		n.content as content,
+  		e.name as createname,
+  		n.createtime as createtime,
+  		n.checkid as checkid,
+  		n.checktime as checktime,
+  		n.checkremark as checkremark,
+  		n.remark as remark
+  	from 
+  		t_system_notice n
+  	left join
+  		t_employee e
+  	on 
+  		n.createid=e.id) t
+  	
+  		
+  	left join
+  		t_employee e
+  	on 
+  		t.checkid=e.id
+  	
+  </select>
+  
+  </mapper>

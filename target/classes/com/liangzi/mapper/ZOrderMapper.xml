@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangzi.mapper.ZOrderMapper">
+	<resultMap id="BaseResultMap" type="com.liangzi.pojo.ZOrderList">
+		<id column="id" jdbcType="BIGINT" property="id" />
+	    <result column="num" jdbcType="VARCHAR" property="num" />
+	    <result column="customername" jdbcType="VARCHAR" property="customername" />
+	    <result column="type" jdbcType="TINYINT" property="type" />
+	    <result column="status" jdbcType="TINYINT" property="status" />
+	    <result column="contactid" jdbcType="BIGINT" property="contactid" />
+	    <result column="contactname" jdbcType="VARCHAR" property="contactname" />
+	    <result column="productid" jdbcType="BIGINT" property="productid" />
+	    <result column="productname" jdbcType="VARCHAR" property="productname" />
+	    <result column="productcount" jdbcType="INTEGER" property="productcount" />
+	    <result column="amount" jdbcType="DECIMAL" property="amount" />
+	    <result column="orderdate" jdbcType="DATE" property="orderdate" />
+	    <result column="contractdate" jdbcType="DATE" property="contractdate" />
+	    <result column="salesid" jdbcType="BIGINT" property="salesid" />
+	    <result column="salesname" jdbcType="VARCHAR" property="salesname" />
+	    <result column="comment" jdbcType="VARCHAR" property="comment" />
+	    <result column="creatorname" jdbcType="VARCHAR" property="creatorname" />
+	    <result column="createtime" jdbcType="DATE" property="createtime" />
+	    <result column="updatorname" jdbcType="VARCHAR" property="updatorname" />
+	    <result column="updatetime" jdbcType="DATE" property="updatetime" />
+	    <result column="isvalid" jdbcType="TINYINT" property="isvalid" />
+	    <result column="unit" jdbcType="TINYINT" property="unit" />
+	    <result column="exchangerate" jdbcType="VARCHAR" property="exchangerate" />
+	    <result column="annualearnings" jdbcType="VARCHAR" property="annualearnings" />
+	    
+	</resultMap>
+	<select id="getOrderList" resultMap="BaseResultMap">
+		select
+			o.id as id,
+			o.num as num,
+			(select name from t_customer c where c.id=o.customer_id) as customername,
+			
+			o.type as type,
+			o.status as status,
+			o.contact_id as contactid,
+			o.contact_name as contactname,
+			o.product_id as productid,
+			o.product_name as productname,
+			o.product_count as productcount,
+			o.amount as amount,
+			o.order_date as orderdate,
+			o.contract_date as contractdate,
+			o.sales_id as salesid,
+			o.sales_name as salesname,
+			o.comment as comment,
+			(select name from t_employee e where e.id=o.creator_id) as creatorname,
+			
+			
+			o.create_time as createtime,
+			
+			(select name from t_employee e where e.id=o.updator_id) as updatorname,
+			o.update_time as updatetime,
+			o.is_valid as isvalid,
+			o.unit as unit,
+			o.exchange_rate as exchangerate,
+			o.annual_earnings as annualearnings
+		from
+			t_customer_order o
+	</select>
+</mapper>

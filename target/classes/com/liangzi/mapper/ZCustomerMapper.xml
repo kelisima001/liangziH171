@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangzi.mapper.ZCustomerMapper">
+	<resultMap id="BaseResultMap" type="com.liangzi.pojo.ZCustomer">
+		<id column="id" jdbcType="BIGINT" property="id" />
+	    <result column="name" jdbcType="VARCHAR" property="name" />
+	    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+	    <result column="type" jdbcType="TINYINT" property="type" />
+	    <result column="status" jdbcType="TINYINT" property="status" />
+	    <result column="resource" jdbcType="TINYINT" property="resource" />
+	    <result column="ori_sales_id" jdbcType="BIGINT" property="oriSalesId" />
+	    <result column="ori_sales_name" jdbcType="VARCHAR" property="oriSalesName" />
+	    <result column="url" jdbcType="VARCHAR" property="url" />
+	    <result column="telephone" jdbcType="VARCHAR" property="telephone" />
+	    <result column="email" jdbcType="VARCHAR" property="email" />
+	    <result column="tax_num" jdbcType="VARCHAR" property="taxNum" />
+	    <result column="id_num" jdbcType="VARCHAR" property="idNum" />
+	    <result column="id_card_front" jdbcType="VARCHAR" property="idCardFront" />
+	    <result column="id_card_back" jdbcType="VARCHAR" property="idCardBack" />
+	    <result column="address" jdbcType="VARCHAR" property="address" />
+	    <result column="bank" jdbcType="VARCHAR" property="bank" />
+	    <result column="bank_num" jdbcType="VARCHAR" property="bankNum" />
+	    <result column="main_bussiness" jdbcType="VARCHAR" property="mainBussiness" />
+	    <result column="comment" jdbcType="VARCHAR" property="comment" />
+	    <result column="is_assigned" jdbcType="TINYINT" property="isAssigned" />
+	    <result column="is_share" jdbcType="TINYINT" property="isShare" />
+	    <result column="creatorname" jdbcType="VARCHAR" property="creatorname" />
+	    <result column="create_time" jdbcType="DATE" property="createTime" />
+	    
+	    <result column="updatorname" jdbcType="TINYINT" property="updatorname" />
+	    <result column="update_time" jdbcType="DATE" property="updateTime" />
+	    <result column="is_valid" jdbcType="TINYINT" property="isValid" />
+	</resultMap>
+	<select id="getCustomerList" resultMap="BaseResultMap">
+		select
+			c.id as id,
+			c.name as name,
+			c.nick_name as nickname,
+			c.type as type,
+			c.status as status,
+			c.resource as resource,
+			c.ori_sales_id as orisalesid,
+			c.ori_sales_name as orisalesname,
+			c.url as url,
+			c.telephone as telephone,
+			c.email as email,
+			c.tax_num as taxnum,
+			c.id_num as idnum,
+			c.id_card_front as idcardfront,
+			c.id_card_back as idcardback,
+			c.address as address,
+			c.bank as bank,
+			c.bank_num as banknum,
+			c.main_bussiness as mainbussiness,
+			c.comment as comment,
+			c.is_assigned as isassigned,
+			c.is_share as isshare,
+			(select name from t_employee e where e.id=c.creator_id),
+			c.create_time as createtime,
+			(select name from t_employee e where e.id=c.updator_id),
+			c.update_time as updatetime,
+			c.is_valid as isvalid
+		from 
+			t_customer c
+	</select>
+</mapper>

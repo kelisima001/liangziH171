@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>无标题页</title>
+<link rel="stylesheet" type="text/css" href="../css/index.css">
+<link rel="stylesheet" type="text/css" href="../upload/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../css/datatables.min.css">
+<link rel="stylesheet" type="text/css" href="../css/easyui.css">
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../js/Employee.js"></script>
+<script src="../js/common.js"></script>
+</head>
+<body class="mian_bj">
+<div class="mian_top_01">
+<div class="mian_top_r"></div>
+<div class="mian_top_l"></div>
+<div class="mian_top_c">
+<ul>
+<li><a href="OrderClass.html">
+<p>
+客户分类</p>
+</a></li>
+<li><a href="AddOrder.html">
+<p>
+新建客户</p>
+</a></li>
+<li><a href="OrderManager.html">
+<p>
+修改客户</p>
+</a></li>
+<li><a href="customerList.html">
+<p>
+客户查询</p>
+</a></li>
+</ul>
+</div>
+<div class="mian_b">
+<!-- <div class="mian_b1">
+ 
+ 
+<p class="mian_b1_sousuo">
+<input name="" type="text"></p>
+<a href="#" title="搜索">
+<p class="mian_b1_a3">
+</p>
+</a><a href="#" title="最后">
+<p class="mian_b1_a4">
+</p>
+</a><a href="#" title="下一页">
+<p class="mian_b1_a5">
+</p>
+</a>
+<p class="mian_b1_list">
+1 2 3 4……</p>
+<a href="#" title="上一页">
+<p class="mian_b1_a6">
+</p>
+</a><a href="#" title="最前">
+<p class="mian_b1_a7">
+</p>
+</a>
+</div>
+<table width="100%" border="0" cellpadding="0" cellspacing="0" class="mian_b_bg">
+<tr>
+<td width="10%" class="mian_b_bg_lm">
+<span></span>订单编号
+</td>
+<td width="15%" class="mian_b_bg_lm">
+<span></span>项目名称
+</td>
+<td width="10%" class="mian_b_bg_lm">
+<span></span>客户信息
+</td>
+<td width="10%" class="mian_b_bg_lm">
+<span></span>项目总额
+</td>
+<td width="10%" class="mian_b_bg_lm">
+配送方式
+</td>
+<td width="10%" class="mian_b_bg_lm">
+销售人员
+</td>
+<td width="10%" class="mian_b_bg_lm">
+部门负责人
+</td>
+<td width="10%" class="mian_b_bg_lm">
+创建时间
+</td>
+<td colspan="2" class="mian_b_bg_lm">
+<span></span>操作
+</td>
+</tr>
+<tr>
+<td>
+nr1001
+</td>
+<td>
+XXX项目
+</td>
+<td>
+XXX有限公司
+</td>
+<td>200000.00
+</td>
+<td>待提</td>
+<td>
+吴菲菲
+</td>
+<td>
+XX经理
+</td>
+<td>2012-3-15</td>
+<td width="5%" class="mian_b_icon_02">
+<a href="OrderDetail.html">查看</a>
+</td>
+</tr>
+<tr>
+<td width="10%" class="mian_b_bg_lm">
+<span></span>订单编号
+</td>
+<td width="15%" class="mian_b_bg_lm">
+<span></span>项目名称
+</td>
+<td width="10%" class="mian_b_bg_lm">
+<span></span>客户信息
+</td>
+<td width="10%" class="mian_b_bg_lm">
+<span></span>项目总额
+</td>
+<td width="10%" class="mian_b_bg_lm">
+配送方式
+</td>
+<td width="10%" class="mian_b_bg_lm">
+销售人员
+</td>
+<td width="10%" class="mian_b_bg_lm">
+部门负责人
+</td>
+<td width="10%" class="mian_b_bg_lm">
+创建时间
+</td>
+<td colspan="2" class="mian_b_bg_lm">
+<span></span>操作
+</td>
+</tr>
+</table> -->
+
+<table class="easyui-datagrid" title="" style=""
+			data-options="
+singleSelect:true,collapsible:true,url:'/liangziH171/customer/list',method:'get',
+autoRowHeight:false,pagination:true,pageSize:10,toolbar:'toolbar'">
+		<thead>
+			<tr>
+				<th data-options="field:'ck',checkbox:true"></th>
+				<th data-options="field:'id'" width="3%">ID</th>
+				<th data-options="field:'name',align:'right'" width="7%">客户名称</th>
+				<th data-options="field:'nickName',align:'right'" width="7%">客户昵称</th>
+				<th data-options="field:'type',align:'right'" width="5%">客户类型</th>
+				<th data-options="field:'status',align:'right'" width="5%">客户状态</th>
+				<th data-options="field:'resource',align:'right'" width="5%">客户来源</th>
+				<th data-options="field:'oriSalesId',align:'right'" width="5%">初始销售</th>
+				<th data-options="field:'oriSalesName',align:'right'" width="5%">初始销售姓名</th>
+				<th data-options="field:'url',align:'right'" width="15%">网址</th>
+				<th data-options="field:'telephone',align:'right'" width="10%">联系电话</th>
+				<th data-options="field:'email',align:'right'" width="15%">电子邮件</th>
+				<th data-options="field:'taxNum',align:'right'" width="10%">纳税人识别号</th>
+				
+				<th data-options="field:'idNum',align:'right'" width="15%">身份证号码</th>
+				<th data-options="field:'idCardFront',align:'right'" width="15%">身份证正面</th>
+				<th data-options="field:'idCardBack',align:'right'" width="15%">身份证反面</th>
+				<th data-options="field:'address',align:'right'" width="15%">地址</th>
+				<th data-options="field:'bank',align:'right'" width="10%">开户银行</th>
+				<th data-options="field:'bankNum',align:'right'" width="15%">开户银行账号</th>
+				<th data-options="field:'mainBussiness',align:'right'" width="10%">主营业务</th>
+				<th data-options="field:'comment',align:'right'" width="15%">备注</th>
+				<th data-options="field:'isAssigned',align:'right',formatter:TT.changeYesOrNo" width="5%">已分配</th>
+				
+				<th data-options="field:'isShare',align:'right',formatter:TT.changeYesOrNo" width="3%">共享</th>
+				<th data-options="field:'creatorname',align:'right'" width="5%">创建人</th>
+				<th data-options="field:'createTime',align:'right',formatter:TT.formatDateTime" width="15%">创建时间</th>
+				
+				<th data-options="field:'updatorname',align:'right'" width="5%">更新人</th>
+				<th data-options="field:'updateTime',align:'right',formatter:TT.formatDateTime" width="15%">更新时间</th>
+				<th data-options="field:'isValid',align:'right',formatter:TT.changeYesOrNo" width="5%">有效</th>
+			</tr>
+		</thead>
+</table>
+
+</div>
+</div>
+</body>
+</html>

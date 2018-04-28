@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangzi.mapper.ZDepartManagerMapper">
+	<resultMap id="BaseResultMap" type="com.liangzi.pojo.ZDepartManager">
+		<id column="depart_id" jdbcType="INTEGER" property="departid" />
+		
+		<result column="depart_name" jdbcType="VARCHAR" property="departname"/>
+		<result column="user_name" jdbcType="VARCHAR" property="username"/>
+		<result column="depart_tel" jdbcType="VARCHAR" property="connecttelno"/>
+		<result column="depart_mobile" jdbcType="VARCHAR" property="connectmobiletelno"/>
+		<result column="depart_fax" jdbcType="VARCHAR" property="faxes"/>
+		<result column="depart_branchid" jdbcType="INTEGER" property="branchid"/>
+		
+	</resultMap>
+	<select id="selectDepartAndUser" resultMap="BaseResultMap">
+		select
+		 d.DepartId as depart_id,
+		 d.DepartName as depart_name,
+		 u.UserName as user_name,
+		 d.ConnectTelNo as depart_tel,
+		 d.ConnectMobileTelNo as depart_mobile,
+		 d.Faxes as depart_fax,
+		 d.BranchId as depart_branchid
+		 from departinfo d left outer join userinfo u
+		 on d.UserId=u.UserId
+	</select>
+</mapper>

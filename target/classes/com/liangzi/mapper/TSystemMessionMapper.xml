@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liangzi.mapper.TSystemMessionMapper">
+  <resultMap id="BaseResultMap" type="com.liangzi.pojo.TSystemMession">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="missionname" jdbcType="VARCHAR" property="missionname" />
+    <result column="createid" jdbcType="INTEGER" property="createid" />
+    <result column="Executorid" jdbcType="INTEGER" property="executorid" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="begintime" jdbcType="TIMESTAMP" property="begintime" />
+    <result column="endtime" jdbcType="TIMESTAMP" property="endtime" />
+    <result column="cooperationer" jdbcType="VARCHAR" property="cooperationer" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, missionname, createid, Executorid, content, begintime, endtime, cooperationer, 
+    status
+  </sql>
+  <select id="selectByExample" parameterType="com.liangzi.pojo.TSystemMessionExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_system_mession
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_system_mession
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_system_mession
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.liangzi.pojo.TSystemMessionExample">
+    delete from t_system_mession
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liangzi.pojo.TSystemMession">
+    insert into t_system_mession (id, missionname, createid, 
+      Executorid, content, begintime, 
+      endtime, cooperationer, status
+      )
+    values (#{id,jdbcType=INTEGER}, #{missionname,jdbcType=VARCHAR}, #{createid,jdbcType=INTEGER}, 
+      #{executorid,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{begintime,jdbcType=TIMESTAMP}, 
+      #{endtime,jdbcType=TIMESTAMP}, #{cooperationer,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.liangzi.pojo.TSystemMession">
+    insert into t_system_mession
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="missionname != null">
+        missionname,
+      </if>
+      <if test="createid != null">
+        createid,
+      </if>
+      <if test="executorid != null">
+        Executorid,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="begintime != null">
+        begintime,
+      </if>
+      <if test="endtime != null">
+        endtime,
+      </if>
+      <if test="cooperationer != null">
+        cooperationer,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="missionname != null">
+        #{missionname,jdbcType=VARCHAR},
+      </if>
+      <if test="createid != null">
+        #{createid,jdbcType=INTEGER},
+      </if>
+      <if test="executorid != null">
+        #{executorid,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="begintime != null">
+        #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cooperationer != null">
+        #{cooperationer,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.liangzi.pojo.TSystemMessionExample" resultType="java.lang.Long">
+    select count(*) from t_system_mession
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_system_mession
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.missionname != null">
+        missionname = #{record.missionname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createid != null">
+        createid = #{record.createid,jdbcType=INTEGER},
+      </if>
+      <if test="record.executorid != null">
+        Executorid = #{record.executorid,jdbcType=INTEGER},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.begintime != null">
+        begintime = #{record.begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endtime != null">
+        endtime = #{record.endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.cooperationer != null">
+        cooperationer = #{record.cooperationer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_system_mession
+    set id = #{record.id,jdbcType=INTEGER},
+      missionname = #{record.missionname,jdbcType=VARCHAR},
+      createid = #{record.createid,jdbcType=INTEGER},
+      Executorid = #{record.executorid,jdbcType=INTEGER},
+      content = #{record.content,jdbcType=VARCHAR},
+      begintime = #{record.begintime,jdbcType=TIMESTAMP},
+      endtime = #{record.endtime,jdbcType=TIMESTAMP},
+      cooperationer = #{record.cooperationer,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liangzi.pojo.TSystemMession">
+    update t_system_mession
+    <set>
+      <if test="missionname != null">
+        missionname = #{missionname,jdbcType=VARCHAR},
+      </if>
+      <if test="createid != null">
+        createid = #{createid,jdbcType=INTEGER},
+      </if>
+      <if test="executorid != null">
+        Executorid = #{executorid,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="begintime != null">
+        begintime = #{begintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        endtime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cooperationer != null">
+        cooperationer = #{cooperationer,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liangzi.pojo.TSystemMession">
+    update t_system_mession
+    set missionname = #{missionname,jdbcType=VARCHAR},
+      createid = #{createid,jdbcType=INTEGER},
+      Executorid = #{executorid,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      begintime = #{begintime,jdbcType=TIMESTAMP},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
+      cooperationer = #{cooperationer,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

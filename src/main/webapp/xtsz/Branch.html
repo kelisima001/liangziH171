@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>部门管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../css/index.css">
+<link rel="stylesheet" type="text/css" href="../upload/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../css/easyui.css">
+
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script src="../js/common.js"></script>
+<script type="text/javascript" src="../js/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="../js/Employee.js"></script>
+
+</head>
+<body class="mian_bj">
+<div class="mian_top_01">
+<div class="mian_top_r"></div>
+<div class="mian_top_l"></div>
+<div class="mian_top_c">
+<ul>
+<li><a href="Branch.html"><p>部门管理</p></a></li>
+<li><a href="EaDoc.html"><p>审批文档流程管理</p></a></li>
+<li><a href="Role.html"><p>角色管理</p></a></li>
+<li><a href="Power.html"><p>权限管理</p></a></li>
+<li><a href="XTCS.html"><p>系统参数设置</p></a></li>
+<li><a href="NormalManage.htm"><p>常规功能管理</p></a></li>
+<li><a href="CustomManage.htm"><p>自定义功能管理</p></a></li>
+</ul>
+</div>
+<div class="mian_b">
+<div class="mian_b1" hidden="hidden">
+<a href="AddBranch.html" title="添加"><p class="mian_b1_a1"></a>
+<a href="#" title="删除"><p class="mian_b1_a2"></a>
+<p class="mian_b1_sousuo"><input name="" type="text"></p>
+<a href="#" title="搜索"><p class="mian_b1_a3"></a>
+<a href="#" title="最后"><p class="mian_b1_a4"></a>
+<a href="#" title="下一页"><p class="mian_b1_a5"></a>
+<p class="mian_b1_list">1 2 3 4……</p>
+<a href="#" title="上一页"><p class="mian_b1_a6"></a>
+<a href="#" title="最前"><p class="mian_b1_a7"></a>
+</div>
+<!-- <table width="100%" border="0" cellpadding="0" cellspacing="0" class="mian_b_bg">
+<tr>
+<td width="3%" class="mian_b_bg_lm"><input name="" type="checkbox" value="">&nbsp;</td>
+<td width="11%" class="mian_b_bg_lm"><span></span>部门编号</td>
+<td width="13%" class="mian_b_bg_lm"><span></span>部门名称</td>
+<td width="10%" class="mian_b_bg_lm"><span></span>部门简称</td>
+<td width="37%" class="mian_b_bg_lm"><span></span>备注</td>
+<td colspan="2" class="mian_b_bg_lm"><span></span>操作</td>
+</tr>
+<tr>
+<td><input name="" type="checkbox" value="">&nbsp;</td>
+<td>1001 </td>
+<td>人事部</td>
+<td>HR</td>
+<td>主管公司人事</td>
+<td width="8%" class="mian_b_icon_01"><a href="AddBranch.html">编辑</a></td>
+<td width="8%" class="mian_b_icon_02"><a href="BranchDetail.html">查看</a></td>
+</tr>
+<tr>
+<td><input name="" type="checkbox" value="">&nbsp;</td>
+<td>1001 </td>
+<td>人事部</td>
+<td>HR</td>
+<td>主管公司人事</td>
+<td width="8%" class="mian_b_icon_01"><a href="AddBranch.html">编辑</a></td>
+<td width="8%" class="mian_b_icon_02"><a href="BranchDetail.html">查看</a></td>
+</tr>
+<tr>
+<td width="3%" class="mian_b_bg_lm"></td>
+<td width="11%" class="mian_b_bg_lm"><span></span>部门编号</td>
+<td width="13%" class="mian_b_bg_lm"><span></span>部门名称</td>
+<td width="10%" class="mian_b_bg_lm"><span></span>部门简称</td>
+<td width="37%" class="mian_b_bg_lm"><span></span>备注</td>
+<td colspan="2" class="mian_b_bg_lm"><span></span>操作</td>
+</tr>
+</table> -->
+<table class="easyui-datagrid" title="" style=""
+			data-options="
+singleSelect:true,collapsible:true,url:'/liangziH171/depart/list',method:'get',
+autoRowHeight:false,pagination:true,pageSize:10">
+		<thead>
+			<tr>
+				<th data-options="field:'ck',checkbox:true"></th>
+				<th data-options="field:'id'" width="5%">ID</th>
+				<th data-options="field:'orgId'" width="5%">机构ID</th>
+				<th data-options="field:'parentId'" width="5%">上级部门</th>
+				<th data-options="field:'parentIds'" width="10%">所有上级部门</th>
+				<th data-options="field:'simpleName',align:'right'" width="15%">部门简称</th>
+				<th data-options="field:'fullName'" width="15%">部门全称</th>
+				<th data-options="field:'createTime',align:'right',formatter:TT.formatDateTime" width="15%">创建时间</th>
+				<th data-options="field:'updateTime',align:'right',formatter:TT.formatDateTime" width="10%">更新时间</th>
+				<th data-options="field:'isValid',align:'right'" width="5%">是否有效</th>
+				
+			</tr>
+		</thead>
+</table>
+</div>
+</div>
+</body>
+</html>
